@@ -5,9 +5,11 @@
 LV_IMG_DECLARE(pulsatrixLogo);
 LV_FONT_DECLARE(Icons12);
 LV_FONT_DECLARE(Icons24);
-LV_FONT_DECLARE(RobotoMedium14);
-LV_FONT_DECLARE(RobotoMedium10);
-LV_FONT_DECLARE(RobotoMonoMedium10);
+LV_FONT_DECLARE(icons);
+LV_FONT_DECLARE(FiraSansMedium10);
+LV_FONT_DECLARE(FiraSansMedium13);
+LV_FONT_DECLARE(IBMPlexSansMedium13);
+LV_FONT_DECLARE(fivepixel);
 
 #define COLOR_LIGHT_RED             LV_COLOR_MAKE(0xFF, 0x40, 0x40)
 #define COLOR_LIGHT_GREEN           LV_COLOR_MAKE(0x40, 0xFF, 0x40)
@@ -22,6 +24,7 @@ extern lv_style_t mainIconStyle;
 extern lv_style_t noBorderStyle;
 extern lv_style_t smallInfoLabelStyle;
 extern lv_style_t largeInfoLabelStyle;
+extern lv_style_t statusChipStyle;
 
 extern void initStyles();
 

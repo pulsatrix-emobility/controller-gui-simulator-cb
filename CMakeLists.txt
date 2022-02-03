@@ -467,8 +467,10 @@ add_executable(controller_gui_simulator_cb
         lv_ex_conf.h
         main.c
         pulsatrixLogo.c
-        RobotoMedium10.c
-        RobotoMedium14.c
-        RobotoMonoMedium10.c
+        fonts/fivepixel.c
+        fonts/FiraSansMedium10.c
+        fonts/FiraSansMedium13.c
+        fonts/IBMPlexSansMedium13.c
+        icons.c
         styles.c
         styles.h)
