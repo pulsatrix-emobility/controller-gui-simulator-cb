@@ -222,7 +222,7 @@ void init_main_screen() {
   lv_obj_align(amperageUnit, row, LV_ALIGN_IN_BOTTOM_LEFT, 0, 0);
 
   MAKE_LABEL(amperageLabel, row, largeInfoLabelStyle, "0.0 A, 0 ph ");
-  lv_obj_align(amperageLabel, amperageUnit, LV_ALIGN_OUT_RIGHT_MID, 0, 0);
+  lv_obj_align(amperageLabel, amperageUnit, LV_ALIGN_OUT_RIGHT_BOTTOM, 0, 0);
 
   MAKE_LABEL(maxAmperageLabel, row, smallInfoLabelStyle, "0.0 A max");
   lv_obj_align(maxAmperageLabel, row, LV_ALIGN_IN_BOTTOM_RIGHT, -2, -1);
@@ -240,7 +240,7 @@ void init_main_screen() {
   lv_obj_align(powerUnit, row, LV_ALIGN_IN_BOTTOM_LEFT, 0, 0);
 
   MAKE_LABEL(powerLabel, row, largeInfoLabelStyle, "0.0 kW");
-  lv_obj_align(powerLabel, powerUnit, LV_ALIGN_OUT_RIGHT_MID, 0, 0);
+  lv_obj_align(powerLabel, powerUnit, LV_ALIGN_OUT_RIGHT_BOTTOM, 0, 0);
 
   MAKE_LABEL(maxPowerLabel, row, smallInfoLabelStyle, "0.0 kW max");
   lv_obj_align(maxPowerLabel, row, LV_ALIGN_IN_BOTTOM_RIGHT, -2, -1);
@@ -256,7 +256,7 @@ void init_main_screen() {
   lv_obj_align(energyUnit, row, LV_ALIGN_IN_BOTTOM_LEFT, 0, 0);
 
   MAKE_LABEL(energyLabel, row, largeInfoLabelStyle, "0.00 kWh");
-  lv_obj_align(energyLabel, energyUnit, LV_ALIGN_OUT_RIGHT_MID, 0, 0);
+  lv_obj_align(energyLabel, energyUnit, LV_ALIGN_OUT_RIGHT_BOTTOM, 0, 0);
 
   MAKE_LABEL(durationLabel, page, smallInfoLabelStyle, "charging: 0d 00:12:34s");
 
