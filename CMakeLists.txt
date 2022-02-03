@@ -460,17 +460,15 @@ add_executable(controller_gui_simulator_cb
         lvgl/tests/lv_test_main.c
         lvgl/lv_conf_template.h
         lvgl/lvgl.h
-        Icons12.c
-        Icons24.c
         lv_conf.h
         lv_drv_conf.h
         lv_ex_conf.h
         main.c
         pulsatrixLogo.c
-        fonts/fivepixel.c
+        fonts/icons.c
+        fonts/FivePixel.c
         fonts/FiraSansMedium10.c
         fonts/FiraSansMedium13.c
         fonts/IBMPlexSansMedium13.c
-        icons.c
         styles.c
         styles.h)

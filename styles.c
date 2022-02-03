@@ -42,7 +42,7 @@ void initStyles() {
         lv_style_set_pad_all(&statusChipStyle, LV_STATE_DEFAULT, 2);
         lv_style_set_bg_color(&statusChipStyle, LV_STATE_DEFAULT, LV_COLOR_GRAY);
         lv_style_set_bg_opa(&statusChipStyle, LV_STATE_DEFAULT, LV_OPA_COVER);
-        lv_style_set_text_font(&statusChipStyle, LV_STATE_DEFAULT, &fivepixel);
+        lv_style_set_text_font(&statusChipStyle, LV_STATE_DEFAULT, &FivePixel);
         lv_style_set_radius(&statusChipStyle, LV_STATE_DEFAULT, 2);
         lv_style_set_text_color(&statusChipStyle, LV_STATE_DEFAULT, LV_COLOR_WHITE);
 
@@ -51,8 +51,8 @@ void initStyles() {
         lv_style_set_text_color(&largeInfoLabelStyle, LV_STATE_DEFAULT, LV_COLOR_WHITE);
 
         // fudge the fonts for slightly tighter lines
-        FiraSansMedium10.line_height = 11;
-        FiraSansMedium13.line_height = 12;
+        FiraSansMedium10.line_height = 12;
+        FiraSansMedium13.line_height = 13;
         IBMPlexSansMedium13.line_height = 12;
     }
 }

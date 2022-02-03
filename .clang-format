@@ -1,0 +1,13 @@
+---
+BasedOnStyle: Google
+ColumnLimit: 132
+AlignConsecutiveMacros: true
+AllowShortFunctionsOnASingleLine: None
+AllowShortIfStatementsOnASingleLine: Never
+AllowShortLoopsOnASingleLine: false
+IndentPPDirectives: BeforeHash
+SpaceAfterCStyleCast: true
+SpaceBeforeCpp11BracedList: true
+SpaceBeforeInheritanceColon: false
+SpacesInContainerLiterals: false
+ReflowComments: true
