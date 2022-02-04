@@ -9,9 +9,9 @@
 
 #if 1 /*Set it to "1" to enable content*/
 
-#ifndef LV_CONF_H
-#define LV_CONF_H
-/* clang-format off */
+  #ifndef LV_CONF_H
+    #define LV_CONF_H
+  /* clang-format off */
 
 #include <stdint.h>
 
@@ -328,8 +328,8 @@ typedef void * lv_indev_drv_user_data_t;            /*Type of user data in the i
 
 /* Montserrat fonts with bpp = 4
  * https://fonts.google.com/specimen/Montserrat  */
-#define LV_FONT_MONTSERRAT_8    1
-#define LV_FONT_MONTSERRAT_12    1
+#define LV_FONT_MONTSERRAT_8    0
+#define LV_FONT_MONTSERRAT_12    0
 #define LV_FONT_MONTSERRAT_14    0
 #define LV_FONT_MONTSERRAT_16    0
 #define LV_FONT_MONTSERRAT_18    0
@@ -363,7 +363,12 @@ typedef void * lv_indev_drv_user_data_t;            /*Type of user data in the i
  * #define LV_FONT_CUSTOM_DECLARE LV_FONT_DECLARE(my_font_1) \
  *                                LV_FONT_DECLARE(my_font_2)
  */
-#define LV_FONT_CUSTOM_DECLARE
+#define LV_FONT_CUSTOM_DECLARE \
+  LV_FONT_DECLARE(icons) \
+  LV_FONT_DECLARE(FiraSansMedium10) \
+  LV_FONT_DECLARE(FiraSansMedium13) \
+  LV_FONT_DECLARE(IBMPlexSansMedium13) \
+  LV_FONT_DECLARE(FivePixel)
 
 /* Enable it if you have fonts with a lot of characters.
  * The limit depends on the font size, font face and bpp
@@ -385,18 +390,18 @@ typedef void * lv_font_user_data_t;
 
 /*Always enable at least on theme*/
 #define LV_USE_THEME_EMPTY       0   /*No theme, you can apply your styles as you need*/
-#define LV_USE_THEME_TEMPLATE    0   /*Simple to the create your theme based on it*/
-#define LV_USE_THEME_MATERIAL    1   /*A fast and impressive theme*/
+#define LV_USE_THEME_TEMPLATE    1   /*Simple to the create your theme based on it*/
+#define LV_USE_THEME_MATERIAL    0   /*A fast and impressive theme*/
 #define LV_USE_THEME_MONO        0   /*Mono-color theme for monochrome displays*/
 
-#define LV_THEME_DEFAULT_INIT               lv_theme_material_init
-#define LV_THEME_DEFAULT_COLOR_PRIMARY      LV_COLOR_RED
+#define LV_THEME_DEFAULT_INIT               lv_theme_template_init
+#define LV_THEME_DEFAULT_COLOR_PRIMARY      LV_COLOR_WHITE
 #define LV_THEME_DEFAULT_COLOR_SECONDARY    LV_COLOR_BLUE
-#define LV_THEME_DEFAULT_FLAG               LV_THEME_MATERIAL_FLAG_LIGHT
-#define LV_THEME_DEFAULT_FONT_SMALL         &lv_font_montserrat_12
-#define LV_THEME_DEFAULT_FONT_NORMAL        &lv_font_montserrat_12
-#define LV_THEME_DEFAULT_FONT_SUBTITLE      &lv_font_montserrat_12
-#define LV_THEME_DEFAULT_FONT_TITLE         &lv_font_montserrat_12
+#define LV_THEME_DEFAULT_FLAG               0
+#define LV_THEME_DEFAULT_FONT_SMALL         &FiraSansMedium10
+#define LV_THEME_DEFAULT_FONT_NORMAL        &FiraSansMedium13
+#define LV_THEME_DEFAULT_FONT_SUBTITLE      &FiraSansMedium10
+#define LV_THEME_DEFAULT_FONT_TITLE         &FiraSansMedium13
 
 /*=================
  *  Text settings
