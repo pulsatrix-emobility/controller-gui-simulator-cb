@@ -4,38 +4,75 @@ project(controller_gui_simulator_cb)
 set(CMAKE_CXX_STANDARD 14)
 
 include_directories(.)
+include_directories(lv_demos)
+include_directories(lv_demos/src)
+include_directories(lv_demos/src/lv_demo_benchmark)
+include_directories(lv_demos/src/lv_demo_keypad_encoder)
+include_directories(lv_demos/src/lv_demo_music)
+include_directories(lv_demos/src/lv_demo_music/assets)
+include_directories(lv_demos/src/lv_demo_stress)
+include_directories(lv_demos/src/lv_demo_widgets)
 include_directories(lv_drivers)
 include_directories(lv_drivers/display)
 include_directories(lv_drivers/gtkdrv)
 include_directories(lv_drivers/indev)
+include_directories(lv_drivers/sdl)
+include_directories(lv_drivers/wayland)
 include_directories(lv_drivers/win32drv)
-include_directories(lv_examples)
-include_directories(lv_examples/src)
-include_directories(lv_examples/src/lv_demo_benchmark)
-include_directories(lv_examples/src/lv_demo_keypad_encoder)
-include_directories(lv_examples/src/lv_demo_music)
-include_directories(lv_examples/src/lv_demo_music/assets)
-include_directories(lv_examples/src/lv_demo_printer)
-include_directories(lv_examples/src/lv_demo_stress)
-include_directories(lv_examples/src/lv_demo_widgets)
-include_directories(lv_examples/src/lv_ex_get_started)
-include_directories(lv_examples/src/lv_ex_style)
-include_directories(lv_examples/src/lv_ex_widgets)
 include_directories(lvgl)
 include_directories(lvgl/examples)
+include_directories(lvgl/examples/anim)
+include_directories(lvgl/examples/arduino)
+include_directories(lvgl/examples/arduino/LVGL_Arduino)
+include_directories(lvgl/examples/event)
+include_directories(lvgl/examples/get_started)
+include_directories(lvgl/examples/layouts)
+include_directories(lvgl/examples/layouts/flex)
+include_directories(lvgl/examples/layouts/grid)
+include_directories(lvgl/examples/others)
+include_directories(lvgl/examples/others/snapshot)
 include_directories(lvgl/examples/porting)
+include_directories(lvgl/examples/scroll)
+include_directories(lvgl/examples/styles)
+include_directories(lvgl/examples/widgets)
 include_directories(lvgl/src)
-include_directories(lvgl/src/lv_core)
-include_directories(lvgl/src/lv_draw)
-include_directories(lvgl/src/lv_font)
-include_directories(lvgl/src/lv_gpu)
-include_directories(lvgl/src/lv_hal)
-include_directories(lvgl/src/lv_misc)
-include_directories(lvgl/src/lv_themes)
-include_directories(lvgl/src/lv_widgets)
-include_directories(lvgl/tests)
-include_directories(lvgl/tests/lv_test_core)
-include_directories(lvgl/tests/lv_test_widgets)
+include_directories(lvgl/src/core)
+include_directories(lvgl/src/draw)
+include_directories(lvgl/src/extra)
+include_directories(lvgl/src/extra/layouts)
+include_directories(lvgl/src/extra/layouts/flex)
+include_directories(lvgl/src/extra/layouts/grid)
+include_directories(lvgl/src/extra/others)
+include_directories(lvgl/src/extra/others/snapshot)
+include_directories(lvgl/src/extra/themes)
+include_directories(lvgl/src/extra/themes/basic)
+include_directories(lvgl/src/extra/themes/default)
+include_directories(lvgl/src/extra/themes/mono)
+include_directories(lvgl/src/extra/widgets)
+include_directories(lvgl/src/extra/widgets/animimg)
+include_directories(lvgl/src/extra/widgets/calendar)
+include_directories(lvgl/src/extra/widgets/chart)
+include_directories(lvgl/src/extra/widgets/colorwheel)
+include_directories(lvgl/src/extra/widgets/imgbtn)
+include_directories(lvgl/src/extra/widgets/keyboard)
+include_directories(lvgl/src/extra/widgets/led)
+include_directories(lvgl/src/extra/widgets/list)
+include_directories(lvgl/src/extra/widgets/meter)
+include_directories(lvgl/src/extra/widgets/msgbox)
+include_directories(lvgl/src/extra/widgets/span)
+include_directories(lvgl/src/extra/widgets/spinbox)
+include_directories(lvgl/src/extra/widgets/spinner)
+include_directories(lvgl/src/extra/widgets/tabview)
+include_directories(lvgl/src/extra/widgets/tileview)
+include_directories(lvgl/src/extra/widgets/win)
+include_directories(lvgl/src/font)
+include_directories(lvgl/src/gpu)
+include_directories(lvgl/src/gpu/sdl)
+include_directories(lvgl/src/hal)
+include_directories(lvgl/src/misc)
+include_directories(lvgl/src/widgets)
+include_directories(lvgl/tests/src)
+include_directories(lvgl/tests/unity)
 
 add_executable(controller_gui_simulator_cb
         fonts/FiraSansMedium10.c
@@ -51,7 +88,6 @@ add_executable(controller_gui_simulator_cb
         lv_drivers/display/GC9A01.h
         lv_drivers/display/ILI9341.c
         lv_drivers/display/ILI9341.h
-        lv_drivers/display/monitor.c
         lv_drivers/display/monitor.h
         lv_drivers/display/R61581.c
         lv_drivers/display/R61581.h
@@ -71,398 +107,301 @@ add_executable(controller_gui_simulator_cb
         lv_drivers/indev/evdev.h
         lv_drivers/indev/FT5406EE8.c
         lv_drivers/indev/FT5406EE8.h
-        lv_drivers/indev/keyboard.c
         lv_drivers/indev/keyboard.h
         lv_drivers/indev/libinput.c
         lv_drivers/indev/libinput_drv.h
-        lv_drivers/indev/mouse.c
         lv_drivers/indev/mouse.h
-        lv_drivers/indev/mousewheel.c
         lv_drivers/indev/mousewheel.h
+        lv_drivers/indev/xkb.c
+        lv_drivers/indev/xkb.h
         lv_drivers/indev/XPT2046.c
         lv_drivers/indev/XPT2046.h
+        lv_drivers/sdl/sdl.c
+        lv_drivers/sdl/sdl.h
+        lv_drivers/sdl/sdl_gpu.c
+        lv_drivers/sdl/sdl_gpu.h
+        lv_drivers/wayland/wayland.c
+        lv_drivers/wayland/wayland.h
         lv_drivers/win32drv/win32drv.c
         lv_drivers/win32drv/win32drv.h
         lv_drivers/lv_drv_conf_template.h
         lv_drivers/win_drv.c
         lv_drivers/win_drv.h
-        lv_examples/src/assets/img_cogwheel_alpha16.c
-        lv_examples/src/assets/img_cogwheel_argb.c
-        lv_examples/src/assets/img_cogwheel_chroma_keyed.c
-        lv_examples/src/assets/img_cogwheel_indexed16.c
-        lv_examples/src/assets/img_cogwheel_rgb.c
-        lv_examples/src/assets/img_hand.c
-        lv_examples/src/assets/lv_font_montserrat_12_compr_az.c
-        lv_examples/src/assets/lv_font_montserrat_16_compr_az.c
-        lv_examples/src/assets/lv_font_montserrat_28_compr_az.c
-        lv_examples/src/lv_demo_benchmark/lv_demo_benchmark.c
-        lv_examples/src/lv_demo_benchmark/lv_demo_benchmark.h
-        lv_examples/src/lv_demo_keypad_encoder/lv_demo_keypad_encoder.c
-        lv_examples/src/lv_demo_keypad_encoder/lv_demo_keypad_encoder.h
-        lv_examples/src/lv_demo_music/assets/img_lv_demo_music_btn_list_pause.c
-        lv_examples/src/lv_demo_music/assets/img_lv_demo_music_btn_list_play.c
-        lv_examples/src/lv_demo_music/assets/img_lv_demo_music_btn_loop.c
-        lv_examples/src/lv_demo_music/assets/img_lv_demo_music_btn_next.c
-        lv_examples/src/lv_demo_music/assets/img_lv_demo_music_btn_pause.c
-        lv_examples/src/lv_demo_music/assets/img_lv_demo_music_btn_play.c
-        lv_examples/src/lv_demo_music/assets/img_lv_demo_music_btn_prev.c
-        lv_examples/src/lv_demo_music/assets/img_lv_demo_music_btn_rnd.c
-        lv_examples/src/lv_demo_music/assets/img_lv_demo_music_corner_left.c
-        lv_examples/src/lv_demo_music/assets/img_lv_demo_music_corner_right.c
-        lv_examples/src/lv_demo_music/assets/img_lv_demo_music_cover_1.c
-        lv_examples/src/lv_demo_music/assets/img_lv_demo_music_cover_2.c
-        lv_examples/src/lv_demo_music/assets/img_lv_demo_music_cover_3.c
-        lv_examples/src/lv_demo_music/assets/img_lv_demo_music_icon_1.c
-        lv_examples/src/lv_demo_music/assets/img_lv_demo_music_icon_2.c
-        lv_examples/src/lv_demo_music/assets/img_lv_demo_music_icon_3.c
-        lv_examples/src/lv_demo_music/assets/img_lv_demo_music_icon_4.c
-        lv_examples/src/lv_demo_music/assets/img_lv_demo_music_list_border.c
-        lv_examples/src/lv_demo_music/assets/img_lv_demo_music_logo.c
-        lv_examples/src/lv_demo_music/assets/img_lv_demo_music_slider_knob.c
-        lv_examples/src/lv_demo_music/assets/img_lv_demo_music_wave_bottom.c
-        lv_examples/src/lv_demo_music/assets/img_lv_demo_music_wave_top.c
-        lv_examples/src/lv_demo_music/assets/lv_demo_music_font_16_bold.c
-        lv_examples/src/lv_demo_music/assets/spectrum_1.h
-        lv_examples/src/lv_demo_music/assets/spectrum_2.h
-        lv_examples/src/lv_demo_music/assets/spectrum_3.h
-        lv_examples/src/lv_demo_music/lv_demo_music.c
-        lv_examples/src/lv_demo_music/lv_demo_music.h
-        lv_examples/src/lv_demo_music/lv_demo_music_list.c
-        lv_examples/src/lv_demo_music/lv_demo_music_list.h
-        lv_examples/src/lv_demo_music/lv_demo_music_main.c
-        lv_examples/src/lv_demo_music/lv_demo_music_main.h
-        lv_examples/src/lv_demo_printer/images/lv_demo_printer_icon_bright.c
-        lv_examples/src/lv_demo_printer/images/lv_demo_printer_icon_eco.c
-        lv_examples/src/lv_demo_printer/images/lv_demo_printer_icon_hue.c
-        lv_examples/src/lv_demo_printer/images/lv_demo_printer_icon_pc.c
-        lv_examples/src/lv_demo_printer/images/lv_demo_printer_icon_tel.c
-        lv_examples/src/lv_demo_printer/images/lv_demo_printer_icon_wifi.c
-        lv_examples/src/lv_demo_printer/images/lv_demo_printer_img_btn_bg_1.c
-        lv_examples/src/lv_demo_printer/images/lv_demo_printer_img_btn_bg_2.c
-        lv_examples/src/lv_demo_printer/images/lv_demo_printer_img_btn_bg_3.c
-        lv_examples/src/lv_demo_printer/images/lv_demo_printer_img_btn_bg_4.c
-        lv_examples/src/lv_demo_printer/images/lv_demo_printer_img_cloud.c
-        lv_examples/src/lv_demo_printer/images/lv_demo_printer_img_copy.c
-        lv_examples/src/lv_demo_printer/images/lv_demo_printer_img_internet.c
-        lv_examples/src/lv_demo_printer/images/lv_demo_printer_img_mobile.c
-        lv_examples/src/lv_demo_printer/images/lv_demo_printer_img_no_internet.c
-        lv_examples/src/lv_demo_printer/images/lv_demo_printer_img_phone.c
-        lv_examples/src/lv_demo_printer/images/lv_demo_printer_img_print.c
-        lv_examples/src/lv_demo_printer/images/lv_demo_printer_img_printer2.c
-        lv_examples/src/lv_demo_printer/images/lv_demo_printer_img_ready.c
-        lv_examples/src/lv_demo_printer/images/lv_demo_printer_img_scan.c
-        lv_examples/src/lv_demo_printer/images/lv_demo_printer_img_scan_example.c
-        lv_examples/src/lv_demo_printer/images/lv_demo_printer_img_setup.c
-        lv_examples/src/lv_demo_printer/images/lv_demo_printer_img_usb.c
-        lv_examples/src/lv_demo_printer/images/lv_demo_printer_img_wave.c
-        lv_examples/src/lv_demo_printer/lv_demo_printer.c
-        lv_examples/src/lv_demo_printer/lv_demo_printer.h
-        lv_examples/src/lv_demo_printer/lv_demo_printer_theme.c
-        lv_examples/src/lv_demo_printer/lv_demo_printer_theme.h
-        lv_examples/src/lv_demo_stress/lv_demo_stress.c
-        lv_examples/src/lv_demo_stress/lv_demo_stress.h
-        lv_examples/src/lv_demo_widgets/lv_demo_widgets.c
-        lv_examples/src/lv_demo_widgets/lv_demo_widgets.h
-        lv_examples/src/lv_ex_get_started/lv_ex_get_started.h
-        lv_examples/src/lv_ex_get_started/lv_ex_get_started_1.c
-        lv_examples/src/lv_ex_get_started/lv_ex_get_started_2.c
-        lv_examples/src/lv_ex_get_started/lv_ex_get_started_3.c
-        lv_examples/src/lv_ex_style/lv_ex_style.h
-        lv_examples/src/lv_ex_style/lv_ex_style_1.c
-        lv_examples/src/lv_ex_style/lv_ex_style_10.c
-        lv_examples/src/lv_ex_style/lv_ex_style_11.c
-        lv_examples/src/lv_ex_style/lv_ex_style_2.c
-        lv_examples/src/lv_ex_style/lv_ex_style_3.c
-        lv_examples/src/lv_ex_style/lv_ex_style_4.c
-        lv_examples/src/lv_ex_style/lv_ex_style_5.c
-        lv_examples/src/lv_ex_style/lv_ex_style_6.c
-        lv_examples/src/lv_ex_style/lv_ex_style_7.c
-        lv_examples/src/lv_ex_style/lv_ex_style_8.c
-        lv_examples/src/lv_ex_style/lv_ex_style_9.c
-        lv_examples/src/lv_ex_widgets/lv_ex_arc/lv_ex_arc_1.c
-        lv_examples/src/lv_ex_widgets/lv_ex_arc/lv_ex_arc_2.c
-        lv_examples/src/lv_ex_widgets/lv_ex_bar/lv_ex_bar_1.c
-        lv_examples/src/lv_ex_widgets/lv_ex_btn/lv_ex_btn_1.c
-        lv_examples/src/lv_ex_widgets/lv_ex_btn/lv_ex_btn_2.c
-        lv_examples/src/lv_ex_widgets/lv_ex_btnmatrix/lv_ex_btnmatrix_1.c
-        lv_examples/src/lv_ex_widgets/lv_ex_calendar/lv_ex_calendar_1.c
-        lv_examples/src/lv_ex_widgets/lv_ex_canvas/lv_ex_canvas_1.c
-        lv_examples/src/lv_ex_widgets/lv_ex_canvas/lv_ex_canvas_2.c
-        lv_examples/src/lv_ex_widgets/lv_ex_chart/lv_ex_chart_1.c
-        lv_examples/src/lv_ex_widgets/lv_ex_chart/lv_ex_chart_2.c
-        lv_examples/src/lv_ex_widgets/lv_ex_checkbox/lv_ex_checkbox_1.c
-        lv_examples/src/lv_ex_widgets/lv_ex_cont/lv_ex_cont_1.c
-        lv_examples/src/lv_ex_widgets/lv_ex_cpicker/lv_ex_cpicker_1.c
-        lv_examples/src/lv_ex_widgets/lv_ex_cpicker/lv_ex_cpicker_2.c
-        lv_examples/src/lv_ex_widgets/lv_ex_dropdown/lv_ex_dropdown_1.c
-        lv_examples/src/lv_ex_widgets/lv_ex_dropdown/lv_ex_dropdown_2.c
-        lv_examples/src/lv_ex_widgets/lv_ex_gauge/lv_ex_gauge_1.c
-        lv_examples/src/lv_ex_widgets/lv_ex_gauge/lv_ex_gauge_2.c
-        lv_examples/src/lv_ex_widgets/lv_ex_img/lv_ex_img_1.c
-        lv_examples/src/lv_ex_widgets/lv_ex_img/lv_ex_img_2.c
-        lv_examples/src/lv_ex_widgets/lv_ex_img/lv_ex_img_3.c
-        lv_examples/src/lv_ex_widgets/lv_ex_imgbtn/imgbtn_blue.c
-        lv_examples/src/lv_ex_widgets/lv_ex_imgbtn/imgbtn_green.c
-        lv_examples/src/lv_ex_widgets/lv_ex_imgbtn/lv_ex_imgbtn_1.c
-        lv_examples/src/lv_ex_widgets/lv_ex_keyboard/lv_ex_keyboard_1.c
-        lv_examples/src/lv_ex_widgets/lv_ex_label/lv_ex_label_1.c
-        lv_examples/src/lv_ex_widgets/lv_ex_label/lv_ex_label_2.c
-        lv_examples/src/lv_ex_widgets/lv_ex_label/lv_ex_label_3.c
-        lv_examples/src/lv_ex_widgets/lv_ex_led/lv_ex_led_1.c
-        lv_examples/src/lv_ex_widgets/lv_ex_line/lv_ex_line_1.c
-        lv_examples/src/lv_ex_widgets/lv_ex_linemeter/lv_ex_linemeter_1.c
-        lv_examples/src/lv_ex_widgets/lv_ex_list/lv_ex_list_1.c
-        lv_examples/src/lv_ex_widgets/lv_ex_msgbox/lv_ex_msgbox_1.c
-        lv_examples/src/lv_ex_widgets/lv_ex_msgbox/lv_ex_msgbox_2.c
-        lv_examples/src/lv_ex_widgets/lv_ex_obj/lv_ex_obj_1.c
-        lv_examples/src/lv_ex_widgets/lv_ex_objmask/lv_ex_objmask_1.c
-        lv_examples/src/lv_ex_widgets/lv_ex_objmask/lv_ex_objmask_2.c
-        lv_examples/src/lv_ex_widgets/lv_ex_page/lv_ex_page_1.c
-        lv_examples/src/lv_ex_widgets/lv_ex_roller/lv_ex_roller_1.c
-        lv_examples/src/lv_ex_widgets/lv_ex_slider/lv_ex_slider_1.c
-        lv_examples/src/lv_ex_widgets/lv_ex_slider/lv_ex_slider_2.c
-        lv_examples/src/lv_ex_widgets/lv_ex_spinbox/lv_ex_spinbox_1.c
-        lv_examples/src/lv_ex_widgets/lv_ex_spinner/lv_ex_spinner_1.c
-        lv_examples/src/lv_ex_widgets/lv_ex_switch/lv_ex_switch_1.c
-        lv_examples/src/lv_ex_widgets/lv_ex_table/lv_ex_table_1.c
-        lv_examples/src/lv_ex_widgets/lv_ex_tabview/lv_ex_tabview_1.c
-        lv_examples/src/lv_ex_widgets/lv_ex_textarea/lv_ex_textarea_1.c
-        lv_examples/src/lv_ex_widgets/lv_ex_textarea/lv_ex_textarea_2.c
-        lv_examples/src/lv_ex_widgets/lv_ex_textarea/lv_ex_textarea_3.c
-        lv_examples/src/lv_ex_widgets/lv_ex_tileview/lv_ex_tileview_1.c
-        lv_examples/src/lv_ex_widgets/lv_ex_win/lv_ex_win_1.c
-        lv_examples/src/lv_ex_widgets/lv_ex_widgets.h
-        lv_examples/src/lv_examples.h
-        lv_examples/lv_ex_conf_template.h
-        lv_examples/lv_examples.h
-        lvgl/examples/porting/lv_port_disp_template.c
-        lvgl/examples/porting/lv_port_disp_template.h
-        lvgl/examples/porting/lv_port_fs_template.c
-        lvgl/examples/porting/lv_port_fs_template.h
-        lvgl/examples/porting/lv_port_indev_template.c
-        lvgl/examples/porting/lv_port_indev_template.h
-        lvgl/examples/LVGL_Arduino.ino
-        lvgl/src/lv_core/lv_disp.c
-        lvgl/src/lv_core/lv_disp.h
-        lvgl/src/lv_core/lv_group.c
-        lvgl/src/lv_core/lv_group.h
-        lvgl/src/lv_core/lv_indev.c
-        lvgl/src/lv_core/lv_indev.h
-        lvgl/src/lv_core/lv_obj.c
-        lvgl/src/lv_core/lv_obj.h
-        lvgl/src/lv_core/lv_obj_style_dec.h
-        lvgl/src/lv_core/lv_refr.c
-        lvgl/src/lv_core/lv_refr.h
-        lvgl/src/lv_core/lv_style.c
-        lvgl/src/lv_core/lv_style.h
-        lvgl/src/lv_draw/lv_draw.h
-        lvgl/src/lv_draw/lv_draw_arc.c
-        lvgl/src/lv_draw/lv_draw_arc.h
-        lvgl/src/lv_draw/lv_draw_blend.c
-        lvgl/src/lv_draw/lv_draw_blend.h
-        lvgl/src/lv_draw/lv_draw_img.c
-        lvgl/src/lv_draw/lv_draw_img.h
-        lvgl/src/lv_draw/lv_draw_label.c
-        lvgl/src/lv_draw/lv_draw_label.h
-        lvgl/src/lv_draw/lv_draw_line.c
-        lvgl/src/lv_draw/lv_draw_line.h
-        lvgl/src/lv_draw/lv_draw_mask.c
-        lvgl/src/lv_draw/lv_draw_mask.h
-        lvgl/src/lv_draw/lv_draw_rect.c
-        lvgl/src/lv_draw/lv_draw_rect.h
-        lvgl/src/lv_draw/lv_draw_triangle.c
-        lvgl/src/lv_draw/lv_draw_triangle.h
-        lvgl/src/lv_draw/lv_img_buf.c
-        lvgl/src/lv_draw/lv_img_buf.h
-        lvgl/src/lv_draw/lv_img_cache.c
-        lvgl/src/lv_draw/lv_img_cache.h
-        lvgl/src/lv_draw/lv_img_decoder.c
-        lvgl/src/lv_draw/lv_img_decoder.h
-        lvgl/src/lv_font/lv_font.c
-        lvgl/src/lv_font/lv_font.h
-        lvgl/src/lv_font/lv_font_dejavu_16_persian_hebrew.c
-        lvgl/src/lv_font/lv_font_fmt_txt.c
-        lvgl/src/lv_font/lv_font_fmt_txt.h
-        lvgl/src/lv_font/lv_font_loader.c
-        lvgl/src/lv_font/lv_font_loader.h
-        lvgl/src/lv_font/lv_font_montserrat_10.c
-        lvgl/src/lv_font/lv_font_montserrat_12.c
-        lvgl/src/lv_font/lv_font_montserrat_12_subpx.c
-        lvgl/src/lv_font/lv_font_montserrat_14.c
-        lvgl/src/lv_font/lv_font_montserrat_16.c
-        lvgl/src/lv_font/lv_font_montserrat_18.c
-        lvgl/src/lv_font/lv_font_montserrat_20.c
-        lvgl/src/lv_font/lv_font_montserrat_22.c
-        lvgl/src/lv_font/lv_font_montserrat_24.c
-        lvgl/src/lv_font/lv_font_montserrat_26.c
-        lvgl/src/lv_font/lv_font_montserrat_28.c
-        lvgl/src/lv_font/lv_font_montserrat_28_compressed.c
-        lvgl/src/lv_font/lv_font_montserrat_30.c
-        lvgl/src/lv_font/lv_font_montserrat_32.c
-        lvgl/src/lv_font/lv_font_montserrat_34.c
-        lvgl/src/lv_font/lv_font_montserrat_36.c
-        lvgl/src/lv_font/lv_font_montserrat_38.c
-        lvgl/src/lv_font/lv_font_montserrat_40.c
-        lvgl/src/lv_font/lv_font_montserrat_42.c
-        lvgl/src/lv_font/lv_font_montserrat_44.c
-        lvgl/src/lv_font/lv_font_montserrat_46.c
-        lvgl/src/lv_font/lv_font_montserrat_48.c
-        lvgl/src/lv_font/lv_font_montserrat_8.c
-        lvgl/src/lv_font/lv_font_simsun_16_cjk.c
-        lvgl/src/lv_font/lv_font_unscii_16.c
-        lvgl/src/lv_font/lv_font_unscii_8.c
-        lvgl/src/lv_font/lv_symbol_def.h
-        lvgl/src/lv_gpu/lv_gpu_nxp_pxp.c
-        lvgl/src/lv_gpu/lv_gpu_nxp_pxp.h
-        lvgl/src/lv_gpu/lv_gpu_nxp_pxp_osa.c
-        lvgl/src/lv_gpu/lv_gpu_nxp_pxp_osa.h
-        lvgl/src/lv_gpu/lv_gpu_nxp_vglite.c
-        lvgl/src/lv_gpu/lv_gpu_nxp_vglite.h
-        lvgl/src/lv_gpu/lv_gpu_stm32_dma2d.c
-        lvgl/src/lv_gpu/lv_gpu_stm32_dma2d.h
-        lvgl/src/lv_hal/lv_hal.h
-        lvgl/src/lv_hal/lv_hal_disp.c
-        lvgl/src/lv_hal/lv_hal_disp.h
-        lvgl/src/lv_hal/lv_hal_indev.c
-        lvgl/src/lv_hal/lv_hal_indev.h
-        lvgl/src/lv_hal/lv_hal_tick.c
-        lvgl/src/lv_hal/lv_hal_tick.h
-        lvgl/src/lv_misc/lv_anim.c
-        lvgl/src/lv_misc/lv_anim.h
-        lvgl/src/lv_misc/lv_area.c
-        lvgl/src/lv_misc/lv_area.h
-        lvgl/src/lv_misc/lv_async.c
-        lvgl/src/lv_misc/lv_async.h
-        lvgl/src/lv_misc/lv_bidi.c
-        lvgl/src/lv_misc/lv_bidi.h
-        lvgl/src/lv_misc/lv_color.c
-        lvgl/src/lv_misc/lv_color.h
-        lvgl/src/lv_misc/lv_debug.c
-        lvgl/src/lv_misc/lv_debug.h
-        lvgl/src/lv_misc/lv_fs.c
-        lvgl/src/lv_misc/lv_fs.h
-        lvgl/src/lv_misc/lv_gc.c
-        lvgl/src/lv_misc/lv_gc.h
-        lvgl/src/lv_misc/lv_ll.c
-        lvgl/src/lv_misc/lv_ll.h
-        lvgl/src/lv_misc/lv_log.c
-        lvgl/src/lv_misc/lv_log.h
-        lvgl/src/lv_misc/lv_math.c
-        lvgl/src/lv_misc/lv_math.h
-        lvgl/src/lv_misc/lv_mem.c
-        lvgl/src/lv_misc/lv_mem.h
-        lvgl/src/lv_misc/lv_printf.c
-        lvgl/src/lv_misc/lv_printf.h
-        lvgl/src/lv_misc/lv_task.c
-        lvgl/src/lv_misc/lv_task.h
-        lvgl/src/lv_misc/lv_templ.c
-        lvgl/src/lv_misc/lv_templ.h
-        lvgl/src/lv_misc/lv_txt.c
-        lvgl/src/lv_misc/lv_txt.h
-        lvgl/src/lv_misc/lv_txt_ap.c
-        lvgl/src/lv_misc/lv_txt_ap.h
-        lvgl/src/lv_misc/lv_types.h
-        lvgl/src/lv_misc/lv_utils.c
-        lvgl/src/lv_misc/lv_utils.h
-        lvgl/src/lv_themes/lv_theme.c
-        lvgl/src/lv_themes/lv_theme.h
-        lvgl/src/lv_themes/lv_theme_empty.c
-        lvgl/src/lv_themes/lv_theme_empty.h
-        lvgl/src/lv_themes/lv_theme_material.c
-        lvgl/src/lv_themes/lv_theme_material.h
-        lvgl/src/lv_themes/lv_theme_mono.c
-        lvgl/src/lv_themes/lv_theme_mono.h
-        lvgl/src/lv_themes/lv_theme_template.c
-        lvgl/src/lv_themes/lv_theme_template.h
-        lvgl/src/lv_widgets/lv_arc.c
-        lvgl/src/lv_widgets/lv_arc.h
-        lvgl/src/lv_widgets/lv_bar.c
-        lvgl/src/lv_widgets/lv_bar.h
-        lvgl/src/lv_widgets/lv_btn.c
-        lvgl/src/lv_widgets/lv_btn.h
-        lvgl/src/lv_widgets/lv_btnmatrix.c
-        lvgl/src/lv_widgets/lv_btnmatrix.h
-        lvgl/src/lv_widgets/lv_calendar.c
-        lvgl/src/lv_widgets/lv_calendar.h
-        lvgl/src/lv_widgets/lv_canvas.c
-        lvgl/src/lv_widgets/lv_canvas.h
-        lvgl/src/lv_widgets/lv_chart.c
-        lvgl/src/lv_widgets/lv_chart.h
-        lvgl/src/lv_widgets/lv_checkbox.c
-        lvgl/src/lv_widgets/lv_checkbox.h
-        lvgl/src/lv_widgets/lv_cont.c
-        lvgl/src/lv_widgets/lv_cont.h
-        lvgl/src/lv_widgets/lv_cpicker.c
-        lvgl/src/lv_widgets/lv_cpicker.h
-        lvgl/src/lv_widgets/lv_dropdown.c
-        lvgl/src/lv_widgets/lv_dropdown.h
-        lvgl/src/lv_widgets/lv_gauge.c
-        lvgl/src/lv_widgets/lv_gauge.h
-        lvgl/src/lv_widgets/lv_img.c
-        lvgl/src/lv_widgets/lv_img.h
-        lvgl/src/lv_widgets/lv_imgbtn.c
-        lvgl/src/lv_widgets/lv_imgbtn.h
-        lvgl/src/lv_widgets/lv_keyboard.c
-        lvgl/src/lv_widgets/lv_keyboard.h
-        lvgl/src/lv_widgets/lv_label.c
-        lvgl/src/lv_widgets/lv_label.h
-        lvgl/src/lv_widgets/lv_led.c
-        lvgl/src/lv_widgets/lv_led.h
-        lvgl/src/lv_widgets/lv_line.c
-        lvgl/src/lv_widgets/lv_line.h
-        lvgl/src/lv_widgets/lv_linemeter.c
-        lvgl/src/lv_widgets/lv_linemeter.h
-        lvgl/src/lv_widgets/lv_list.c
-        lvgl/src/lv_widgets/lv_list.h
-        lvgl/src/lv_widgets/lv_msgbox.c
-        lvgl/src/lv_widgets/lv_msgbox.h
-        lvgl/src/lv_widgets/lv_objmask.c
-        lvgl/src/lv_widgets/lv_objmask.h
-        lvgl/src/lv_widgets/lv_objx_templ.c
-        lvgl/src/lv_widgets/lv_objx_templ.h
-        lvgl/src/lv_widgets/lv_page.c
-        lvgl/src/lv_widgets/lv_page.h
-        lvgl/src/lv_widgets/lv_roller.c
-        lvgl/src/lv_widgets/lv_roller.h
-        lvgl/src/lv_widgets/lv_slider.c
-        lvgl/src/lv_widgets/lv_slider.h
-        lvgl/src/lv_widgets/lv_spinbox.c
-        lvgl/src/lv_widgets/lv_spinbox.h
-        lvgl/src/lv_widgets/lv_spinner.c
-        lvgl/src/lv_widgets/lv_spinner.h
-        lvgl/src/lv_widgets/lv_switch.c
-        lvgl/src/lv_widgets/lv_switch.h
-        lvgl/src/lv_widgets/lv_table.c
-        lvgl/src/lv_widgets/lv_table.h
-        lvgl/src/lv_widgets/lv_tabview.c
-        lvgl/src/lv_widgets/lv_tabview.h
-        lvgl/src/lv_widgets/lv_textarea.c
-        lvgl/src/lv_widgets/lv_textarea.h
-        lvgl/src/lv_widgets/lv_tileview.c
-        lvgl/src/lv_widgets/lv_tileview.h
-        lvgl/src/lv_widgets/lv_win.c
-        lvgl/src/lv_widgets/lv_win.h
+        lvgl/src/core/lv_disp.c
+        lvgl/src/core/lv_disp.h
+        lvgl/src/core/lv_event.c
+        lvgl/src/core/lv_event.h
+        lvgl/src/core/lv_group.c
+        lvgl/src/core/lv_group.h
+        lvgl/src/core/lv_indev.c
+        lvgl/src/core/lv_indev.h
+        lvgl/src/core/lv_indev_scroll.c
+        lvgl/src/core/lv_indev_scroll.h
+        lvgl/src/core/lv_obj.c
+        lvgl/src/core/lv_obj.h
+        lvgl/src/core/lv_obj_class.c
+        lvgl/src/core/lv_obj_class.h
+        lvgl/src/core/lv_obj_draw.c
+        lvgl/src/core/lv_obj_draw.h
+        lvgl/src/core/lv_obj_pos.c
+        lvgl/src/core/lv_obj_pos.h
+        lvgl/src/core/lv_obj_scroll.c
+        lvgl/src/core/lv_obj_scroll.h
+        lvgl/src/core/lv_obj_style.c
+        lvgl/src/core/lv_obj_style.h
+        lvgl/src/core/lv_obj_style_gen.c
+        lvgl/src/core/lv_obj_style_gen.h
+        lvgl/src/core/lv_obj_tree.c
+        lvgl/src/core/lv_obj_tree.h
+        lvgl/src/core/lv_refr.c
+        lvgl/src/core/lv_refr.h
+        lvgl/src/core/lv_theme.c
+        lvgl/src/core/lv_theme.h
+        lvgl/src/draw/lv_draw.h
+        lvgl/src/draw/lv_draw_arc.c
+        lvgl/src/draw/lv_draw_arc.h
+        lvgl/src/draw/lv_draw_blend.c
+        lvgl/src/draw/lv_draw_blend.h
+        lvgl/src/draw/lv_draw_img.c
+        lvgl/src/draw/lv_draw_img.h
+        lvgl/src/draw/lv_draw_label.c
+        lvgl/src/draw/lv_draw_label.h
+        lvgl/src/draw/lv_draw_line.c
+        lvgl/src/draw/lv_draw_line.h
+        lvgl/src/draw/lv_draw_mask.c
+        lvgl/src/draw/lv_draw_mask.h
+        lvgl/src/draw/lv_draw_rect.c
+        lvgl/src/draw/lv_draw_rect.h
+        lvgl/src/draw/lv_draw_triangle.c
+        lvgl/src/draw/lv_draw_triangle.h
+        lvgl/src/draw/lv_img_buf.c
+        lvgl/src/draw/lv_img_buf.h
+        lvgl/src/draw/lv_img_cache.c
+        lvgl/src/draw/lv_img_cache.h
+        lvgl/src/draw/lv_img_decoder.c
+        lvgl/src/draw/lv_img_decoder.h
+        lvgl/src/extra/layouts/flex/lv_flex.c
+        lvgl/src/extra/layouts/flex/lv_flex.h
+        lvgl/src/extra/layouts/grid/lv_grid.c
+        lvgl/src/extra/layouts/grid/lv_grid.h
+        lvgl/src/extra/layouts/lv_layouts.h
+        lvgl/src/extra/others/snapshot/lv_snapshot.c
+        lvgl/src/extra/others/snapshot/lv_snapshot.h
+        lvgl/src/extra/others/lv_others.h
+        lvgl/src/extra/themes/basic/lv_theme_basic.c
+        lvgl/src/extra/themes/basic/lv_theme_basic.h
+        lvgl/src/extra/themes/default/lv_theme_default.c
+        lvgl/src/extra/themes/default/lv_theme_default.h
+        lvgl/src/extra/themes/mono/lv_theme_mono.c
+        lvgl/src/extra/themes/mono/lv_theme_mono.h
+        lvgl/src/extra/themes/lv_themes.h
+        lvgl/src/extra/widgets/animimg/lv_animimg.c
+        lvgl/src/extra/widgets/animimg/lv_animimg.h
+        lvgl/src/extra/widgets/calendar/lv_calendar.c
+        lvgl/src/extra/widgets/calendar/lv_calendar.h
+        lvgl/src/extra/widgets/calendar/lv_calendar_header_arrow.c
+        lvgl/src/extra/widgets/calendar/lv_calendar_header_arrow.h
+        lvgl/src/extra/widgets/calendar/lv_calendar_header_dropdown.c
+        lvgl/src/extra/widgets/calendar/lv_calendar_header_dropdown.h
+        lvgl/src/extra/widgets/chart/lv_chart.c
+        lvgl/src/extra/widgets/chart/lv_chart.h
+        lvgl/src/extra/widgets/colorwheel/lv_colorwheel.c
+        lvgl/src/extra/widgets/colorwheel/lv_colorwheel.h
+        lvgl/src/extra/widgets/imgbtn/lv_imgbtn.c
+        lvgl/src/extra/widgets/imgbtn/lv_imgbtn.h
+        lvgl/src/extra/widgets/keyboard/lv_keyboard.c
+        lvgl/src/extra/widgets/keyboard/lv_keyboard.h
+        lvgl/src/extra/widgets/led/lv_led.c
+        lvgl/src/extra/widgets/led/lv_led.h
+        lvgl/src/extra/widgets/list/lv_list.c
+        lvgl/src/extra/widgets/list/lv_list.h
+        lvgl/src/extra/widgets/meter/lv_meter.c
+        lvgl/src/extra/widgets/meter/lv_meter.h
+        lvgl/src/extra/widgets/msgbox/lv_msgbox.c
+        lvgl/src/extra/widgets/msgbox/lv_msgbox.h
+        lvgl/src/extra/widgets/span/lv_span.c
+        lvgl/src/extra/widgets/span/lv_span.h
+        lvgl/src/extra/widgets/spinbox/lv_spinbox.c
+        lvgl/src/extra/widgets/spinbox/lv_spinbox.h
+        lvgl/src/extra/widgets/spinner/lv_spinner.c
+        lvgl/src/extra/widgets/spinner/lv_spinner.h
+        lvgl/src/extra/widgets/tabview/lv_tabview.c
+        lvgl/src/extra/widgets/tabview/lv_tabview.h
+        lvgl/src/extra/widgets/tileview/lv_tileview.c
+        lvgl/src/extra/widgets/tileview/lv_tileview.h
+        lvgl/src/extra/widgets/win/lv_win.c
+        lvgl/src/extra/widgets/win/lv_win.h
+        lvgl/src/extra/widgets/lv_widgets.h
+        lvgl/src/extra/lv_extra.c
+        lvgl/src/extra/lv_extra.h
+        lvgl/src/font/lv_font.c
+        lvgl/src/font/lv_font.h
+        lvgl/src/font/lv_font_dejavu_16_persian_hebrew.c
+        lvgl/src/font/lv_font_fmt_txt.c
+        lvgl/src/font/lv_font_fmt_txt.h
+        lvgl/src/font/lv_font_loader.c
+        lvgl/src/font/lv_font_loader.h
+        lvgl/src/font/lv_font_montserrat_10.c
+        lvgl/src/font/lv_font_montserrat_12.c
+        lvgl/src/font/lv_font_montserrat_12_subpx.c
+        lvgl/src/font/lv_font_montserrat_14.c
+        lvgl/src/font/lv_font_montserrat_16.c
+        lvgl/src/font/lv_font_montserrat_18.c
+        lvgl/src/font/lv_font_montserrat_20.c
+        lvgl/src/font/lv_font_montserrat_22.c
+        lvgl/src/font/lv_font_montserrat_24.c
+        lvgl/src/font/lv_font_montserrat_26.c
+        lvgl/src/font/lv_font_montserrat_28.c
+        lvgl/src/font/lv_font_montserrat_28_compressed.c
+        lvgl/src/font/lv_font_montserrat_30.c
+        lvgl/src/font/lv_font_montserrat_32.c
+        lvgl/src/font/lv_font_montserrat_34.c
+        lvgl/src/font/lv_font_montserrat_36.c
+        lvgl/src/font/lv_font_montserrat_38.c
+        lvgl/src/font/lv_font_montserrat_40.c
+        lvgl/src/font/lv_font_montserrat_42.c
+        lvgl/src/font/lv_font_montserrat_44.c
+        lvgl/src/font/lv_font_montserrat_46.c
+        lvgl/src/font/lv_font_montserrat_48.c
+        lvgl/src/font/lv_font_montserrat_8.c
+        lvgl/src/font/lv_font_simsun_16_cjk.c
+        lvgl/src/font/lv_font_unscii_16.c
+        lvgl/src/font/lv_font_unscii_8.c
+        lvgl/src/font/lv_symbol_def.h
+        lvgl/src/gpu/sdl/lv_gpu_sdl_draw_arc.c
+        lvgl/src/gpu/sdl/lv_gpu_sdl_draw_blend.c
+        lvgl/src/gpu/sdl/lv_gpu_sdl_draw_img.c
+        lvgl/src/gpu/sdl/lv_gpu_sdl_draw_label.c
+        lvgl/src/gpu/sdl/lv_gpu_sdl_draw_line.c
+        lvgl/src/gpu/sdl/lv_gpu_sdl_draw_rect.c
+        lvgl/src/gpu/sdl/lv_gpu_sdl_lru.c
+        lvgl/src/gpu/sdl/lv_gpu_sdl_lru.h
+        lvgl/src/gpu/sdl/lv_gpu_sdl_mask.c
+        lvgl/src/gpu/sdl/lv_gpu_sdl_mask.h
+        lvgl/src/gpu/sdl/lv_gpu_sdl_stack_blur.c
+        lvgl/src/gpu/sdl/lv_gpu_sdl_stack_blur.h
+        lvgl/src/gpu/sdl/lv_gpu_sdl_texture_cache.c
+        lvgl/src/gpu/sdl/lv_gpu_sdl_texture_cache.h
+        lvgl/src/gpu/sdl/lv_gpu_sdl_utils.c
+        lvgl/src/gpu/sdl/lv_gpu_sdl_utils.h
+        lvgl/src/gpu/lv_gpu_nxp_pxp.c
+        lvgl/src/gpu/lv_gpu_nxp_pxp.h
+        lvgl/src/gpu/lv_gpu_nxp_pxp_osa.c
+        lvgl/src/gpu/lv_gpu_nxp_pxp_osa.h
+        lvgl/src/gpu/lv_gpu_nxp_vglite.c
+        lvgl/src/gpu/lv_gpu_nxp_vglite.h
+        lvgl/src/gpu/lv_gpu_sdl.c
+        lvgl/src/gpu/lv_gpu_sdl.h
+        lvgl/src/gpu/lv_gpu_stm32_dma2d.c
+        lvgl/src/gpu/lv_gpu_stm32_dma2d.h
+        lvgl/src/hal/lv_hal.h
+        lvgl/src/hal/lv_hal_disp.c
+        lvgl/src/hal/lv_hal_disp.h
+        lvgl/src/hal/lv_hal_indev.c
+        lvgl/src/hal/lv_hal_indev.h
+        lvgl/src/hal/lv_hal_tick.c
+        lvgl/src/hal/lv_hal_tick.h
+        lvgl/src/misc/lv_anim.c
+        lvgl/src/misc/lv_anim.h
+        lvgl/src/misc/lv_anim_timeline.c
+        lvgl/src/misc/lv_anim_timeline.h
+        lvgl/src/misc/lv_area.c
+        lvgl/src/misc/lv_area.h
+        lvgl/src/misc/lv_assert.h
+        lvgl/src/misc/lv_async.c
+        lvgl/src/misc/lv_async.h
+        lvgl/src/misc/lv_bidi.c
+        lvgl/src/misc/lv_bidi.h
+        lvgl/src/misc/lv_color.c
+        lvgl/src/misc/lv_color.h
+        lvgl/src/misc/lv_fs.c
+        lvgl/src/misc/lv_fs.h
+        lvgl/src/misc/lv_gc.c
+        lvgl/src/misc/lv_gc.h
+        lvgl/src/misc/lv_ll.c
+        lvgl/src/misc/lv_ll.h
+        lvgl/src/misc/lv_log.c
+        lvgl/src/misc/lv_log.h
+        lvgl/src/misc/lv_math.c
+        lvgl/src/misc/lv_math.h
+        lvgl/src/misc/lv_mem.c
+        lvgl/src/misc/lv_mem.h
+        lvgl/src/misc/lv_printf.c
+        lvgl/src/misc/lv_printf.h
+        lvgl/src/misc/lv_style.c
+        lvgl/src/misc/lv_style.h
+        lvgl/src/misc/lv_style_gen.c
+        lvgl/src/misc/lv_style_gen.h
+        lvgl/src/misc/lv_templ.c
+        lvgl/src/misc/lv_templ.h
+        lvgl/src/misc/lv_timer.c
+        lvgl/src/misc/lv_timer.h
+        lvgl/src/misc/lv_tlsf.c
+        lvgl/src/misc/lv_tlsf.h
+        lvgl/src/misc/lv_txt.c
+        lvgl/src/misc/lv_txt.h
+        lvgl/src/misc/lv_txt_ap.c
+        lvgl/src/misc/lv_txt_ap.h
+        lvgl/src/misc/lv_types.h
+        lvgl/src/misc/lv_utils.c
+        lvgl/src/misc/lv_utils.h
+        lvgl/src/widgets/lv_arc.c
+        lvgl/src/widgets/lv_arc.h
+        lvgl/src/widgets/lv_bar.c
+        lvgl/src/widgets/lv_bar.h
+        lvgl/src/widgets/lv_btn.c
+        lvgl/src/widgets/lv_btn.h
+        lvgl/src/widgets/lv_btnmatrix.c
+        lvgl/src/widgets/lv_btnmatrix.h
+        lvgl/src/widgets/lv_canvas.c
+        lvgl/src/widgets/lv_canvas.h
+        lvgl/src/widgets/lv_checkbox.c
+        lvgl/src/widgets/lv_checkbox.h
+        lvgl/src/widgets/lv_dropdown.c
+        lvgl/src/widgets/lv_dropdown.h
+        lvgl/src/widgets/lv_img.c
+        lvgl/src/widgets/lv_img.h
+        lvgl/src/widgets/lv_label.c
+        lvgl/src/widgets/lv_label.h
+        lvgl/src/widgets/lv_line.c
+        lvgl/src/widgets/lv_line.h
+        lvgl/src/widgets/lv_objx_templ.c
+        lvgl/src/widgets/lv_objx_templ.h
+        lvgl/src/widgets/lv_roller.c
+        lvgl/src/widgets/lv_roller.h
+        lvgl/src/widgets/lv_slider.c
+        lvgl/src/widgets/lv_slider.h
+        lvgl/src/widgets/lv_switch.c
+        lvgl/src/widgets/lv_switch.h
+        lvgl/src/widgets/lv_table.c
+        lvgl/src/widgets/lv_table.h
+        lvgl/src/widgets/lv_textarea.c
+        lvgl/src/widgets/lv_textarea.h
         lvgl/src/lv_api_map.h
         lvgl/src/lv_conf_internal.h
         lvgl/src/lv_conf_kconfig.h
         lvgl/src/lvgl.h
-        lvgl/tests/lv_test_core/lv_test_core.c
-        lvgl/tests/lv_test_core/lv_test_core.h
-        lvgl/tests/lv_test_core/lv_test_font_loader.c
-        lvgl/tests/lv_test_core/lv_test_font_loader.h
-        lvgl/tests/lv_test_core/lv_test_obj.c
-        lvgl/tests/lv_test_core/lv_test_obj.h
-        lvgl/tests/lv_test_core/lv_test_style.c
-        lvgl/tests/lv_test_core/lv_test_style.h
-        lvgl/tests/lv_test_fonts/font_1.c
-        lvgl/tests/lv_test_fonts/font_2.c
-        lvgl/tests/lv_test_fonts/font_3.c
-        lvgl/tests/lv_test_widgets/lv_test_label.c
-        lvgl/tests/lv_test_widgets/lv_test_label.h
-        lvgl/tests/lv_test_assert.c
-        lvgl/tests/lv_test_assert.h
-        lvgl/tests/lv_test_conf.h
-        lvgl/tests/lv_test_main.c
+        lvgl/tests/src/test_cases/_test_template.c
+        lvgl/tests/src/test_cases/test_arc.c
+        lvgl/tests/src/test_cases/test_checkbox.c
+        lvgl/tests/src/test_cases/test_config.c
+        lvgl/tests/src/test_cases/test_dropdown.c
+        lvgl/tests/src/test_cases/test_font_loader.c
+        lvgl/tests/src/test_cases/test_obj_tree.c
+        lvgl/tests/src/test_cases/test_style.c
+        lvgl/tests/src/test_fonts/font_1.c
+        lvgl/tests/src/test_fonts/font_2.c
+        lvgl/tests/src/test_fonts/font_3.c
+        lvgl/tests/src/lv_test_conf.h
+        lvgl/tests/src/lv_test_indev.c
+        lvgl/tests/src/lv_test_indev.h
+        lvgl/tests/src/lv_test_init.c
+        lvgl/tests/src/lv_test_init.h
+        lvgl/tests/unity/unity.c
+        lvgl/tests/unity/unity.h
+        lvgl/tests/unity/unity_internals.h
+        lvgl/tests/unity/unity_support.c
+        lvgl/tests/unity/unity_support.h
         lvgl/lv_conf_template.h
         lvgl/lvgl.h
         lv_conf.h
