@@ -13,11 +13,18 @@ static void hal_init(void);
 
 static int tick_thread(void *data);
 
-lv_obj_t *makeStatusChip(lv_obj_t *parent, char *text, lv_color_t color);
 static void opa_anim(void *bg, lv_anim_value_t v) {
   lv_obj_t *mbox = bg;
   lv_obj_set_style_local_bg_opa(mbox, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, v);
   lv_obj_set_style_local_text_opa(mbox, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, v);
+}
+
+lv_obj_t *makeStatusChip(lv_obj_t *parent, char *text, lv_color_t color) {
+  lv_obj_t *chip = lv_label_create(parent, NULL);
+  lv_obj_add_style(chip, LV_OBJ_PART_MAIN, &statusChipStyle);
+  lv_obj_set_style_local_bg_color(chip, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, color);
+  lv_label_set_text_static(chip, text);
+  return chip;
 }
 
 lv_obj_t *makeStatusRow(lv_obj_t *parent) {  // status row
@@ -67,33 +74,25 @@ lv_obj_t *makeStatusRow(lv_obj_t *parent) {  // status row
 
   return statusRow;
 }
-lv_obj_t *makeStatusChip(lv_obj_t *parent, char *text, lv_color_t color) {
-  lv_obj_t *chip = lv_label_create(parent, NULL);
-  lv_obj_add_style(chip, LV_OBJ_PART_MAIN, &statusChipStyle);
-  lv_obj_set_style_local_bg_color(chip, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, color);
-  lv_label_set_text_static(chip, text);
-  return chip;
-}
 
 void init_main_screen() {
-  lv_obj_t *root = lv_obj_create(NULL, NULL);
-  lv_obj_reset_style_list(root, LV_OBJ_PART_MAIN);
-  lv_obj_set_pos(root, 0, 0);
-  lv_obj_set_size(root, LV_HOR_RES, LV_VER_RES);
-
-  lv_obj_t *screen = lv_cont_create(root, NULL);
+  lv_obj_t *screen = lv_obj_create(NULL, NULL);
+  lv_obj_reset_style_list(screen, LV_OBJ_PART_MAIN);
   lv_obj_set_pos(screen, 0, 0);
   lv_obj_set_size(screen, LV_HOR_RES, LV_VER_RES);
-  lv_obj_set_style_local_pad_inner(screen, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, 0);
-  lv_obj_add_style(screen, LV_OBJ_PART_MAIN, &noBorderStyle);
-  lv_obj_set_style_local_bg_opa(screen, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, LV_OPA_COVER);
 
-  lv_obj_set_style_local_bg_color(screen, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, LV_COLOR_BLACK);
+  lv_obj_t *main = lv_cont_create(screen, NULL);
+  lv_obj_set_pos(main, 0, 0);
+  lv_obj_set_size(main, LV_HOR_RES, LV_VER_RES);
+  lv_obj_set_style_local_pad_inner(main, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, 0);
+  lv_obj_add_style(main, LV_OBJ_PART_MAIN, &noBorderStyle);
+  lv_obj_set_style_local_bg_opa(main, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, LV_OPA_COVER);
+  lv_obj_set_style_local_bg_color(main, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, LV_COLOR_BLACK);
 
-  lv_obj_t *statusRow = makeStatusRow(screen);
+  lv_obj_t *statusRow = makeStatusRow(main);
 
   // icon row
-  lv_obj_t *iconRow = lv_cont_create(screen, NULL);
+  lv_obj_t *iconRow = lv_cont_create(main, NULL);
   lv_cont_set_layout(iconRow, LV_LAYOUT_ROW_MID);
   lv_cont_set_fit2(iconRow, LV_FIT_PARENT, LV_FIT_TIGHT);
   lv_obj_add_style(iconRow, LV_OBJ_PART_MAIN, &noBorderStyle);
@@ -147,7 +146,7 @@ void init_main_screen() {
   lv_obj_add_style(icon, LV_OBJ_PART_MAIN, &mainIconStyle);
   lv_obj_set_parent(icon, iconRow);
 
-  lv_obj_align(iconRow, screen, LV_ALIGN_IN_BOTTOM_MID, 0, 0);
+  lv_obj_align(iconRow, main, LV_ALIGN_IN_BOTTOM_MID, 0, 0);
 
   lv_obj_t *nameLabel;
   lv_obj_t *statusLabel;
@@ -159,11 +158,12 @@ void init_main_screen() {
   lv_obj_t *durationLabel;
 
   // the page
-  lv_obj_t *page = lv_cont_create(screen, NULL);
+  lv_obj_t *page = lv_cont_create(main, NULL);
   lv_obj_align(page, statusRow, LV_ALIGN_OUT_BOTTOM_MID, 0, 0);
-  lv_coord_t w = lv_obj_get_width(screen);
-  lv_coord_t h = lv_obj_get_height(screen) - (lv_obj_get_height(statusRow) + lv_obj_get_height(iconRow));
+  lv_coord_t w = lv_obj_get_width(main);
+  lv_coord_t h = lv_obj_get_height(main) - (lv_obj_get_height(statusRow) + lv_obj_get_height(iconRow));
   lv_obj_set_size(page, w, h);
+  printf("%d - (%d + %d) = %d", lv_obj_get_height(main), lv_obj_get_height(statusRow), lv_obj_get_height(iconRow), h);
   printf("page size %d %d", lv_obj_get_width_margin(page), lv_obj_get_height_margin(page));
 
   lv_obj_set_style_local_pad_top(page, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, 2);
@@ -250,19 +250,14 @@ void init_main_screen() {
   lv_obj_set_style_local_text_font(durationLabel, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, &FiraSansMedium10);
   lv_label_set_long_mode(durationLabel, LV_LABEL_LONG_SROLL_CIRC);
 
-  lv_scr_load(root);
-
-  /* Create a full-screen background */
-  static lv_style_t style_modal;
-  lv_style_init(&style_modal);
-  lv_style_set_bg_color(&style_modal, LV_STATE_DEFAULT, LV_COLOR_BLACK);
-  lv_style_set_bg_opa(&style_modal, LV_STATE_DEFAULT, LV_OPA_TRANSP);
+  lv_scr_load(screen);
 
   /* Create a base object for the modal background */
-  lv_obj_t *background = lv_obj_create(root, NULL);
+  lv_obj_t *background = lv_obj_create(screen, NULL);
   lv_obj_reset_style_list(background, LV_OBJ_PART_MAIN);
   lv_obj_set_pos(background, 0, 0);
-  lv_obj_add_style(background, LV_OBJ_PART_MAIN, &style_modal);
+  lv_obj_set_style_local_bg_color(background, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, LV_COLOR_BLACK);
+  lv_obj_set_style_local_bg_opa(background, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, LV_OPA_TRANSP);
   lv_obj_set_size(background, LV_HOR_RES, LV_VER_RES);
 
   lv_obj_t *mbox = lv_label_create(background, NULL);
@@ -272,7 +267,7 @@ void init_main_screen() {
   lv_obj_set_style_local_pad_hor(mbox, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, 20);
   lv_obj_set_style_local_pad_ver(mbox, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, 10);
   lv_obj_set_style_local_radius(mbox, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, 10);
-  lv_label_set_text(mbox, "Main screen");
+  lv_label_set_text(mbox, "Main main");
   lv_obj_align(mbox, NULL, LV_ALIGN_CENTER, 0, 0);
 
   /* Fade the message box in with an animation */
