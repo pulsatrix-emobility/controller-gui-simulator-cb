@@ -38,7 +38,6 @@ lv_obj_t *makeStatusRow(lv_obj_t *parent) {  // status row
   lv_obj_set_style_local_border_width(statusRow, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, 1);
   lv_obj_set_style_local_border_side(statusRow, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, LV_BORDER_SIDE_BOTTOM);
 
-
   lv_obj_t *statusRowLeft = lv_cont_create(statusRow, NULL);
   lv_cont_set_layout(statusRowLeft, LV_LAYOUT_ROW_MID);
   lv_cont_set_fit2(statusRowLeft, LV_FIT_TIGHT, LV_FIT_TIGHT);
@@ -54,7 +53,6 @@ lv_obj_t *makeStatusRow(lv_obj_t *parent) {  // status row
   lv_obj_add_style(timeLabel, LV_OBJ_PART_MAIN, &statusChipStyle);
   lv_obj_set_style_local_bg_opa(timeLabel, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, LV_OPA_TRANSP);
   lv_label_set_text(timeLabel, "123d 14:23:22");
-
 
   lv_obj_t *statusRowRight = lv_cont_create(statusRow, NULL);
   lv_cont_set_layout(statusRowRight, LV_LAYOUT_ROW_MID);
@@ -75,79 +73,7 @@ lv_obj_t *makeStatusRow(lv_obj_t *parent) {  // status row
   return statusRow;
 }
 
-void init_main_screen() {
-  lv_obj_t *screen = lv_obj_create(NULL, NULL);
-  lv_obj_reset_style_list(screen, LV_OBJ_PART_MAIN);
-  lv_obj_set_pos(screen, 0, 0);
-  lv_obj_set_size(screen, LV_HOR_RES, LV_VER_RES);
-
-  lv_obj_t *main = lv_cont_create(screen, NULL);
-  lv_obj_set_pos(main, 0, 0);
-  lv_obj_set_size(main, LV_HOR_RES, LV_VER_RES);
-  lv_obj_set_style_local_pad_inner(main, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, 0);
-  lv_obj_add_style(main, LV_OBJ_PART_MAIN, &noBorderStyle);
-  lv_obj_set_style_local_bg_opa(main, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, LV_OPA_COVER);
-  lv_obj_set_style_local_bg_color(main, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, LV_COLOR_BLACK);
-
-  lv_obj_t *statusRow = makeStatusRow(main);
-
-  // icon row
-  lv_obj_t *iconRow = lv_cont_create(main, NULL);
-  lv_cont_set_layout(iconRow, LV_LAYOUT_ROW_MID);
-  lv_cont_set_fit2(iconRow, LV_FIT_PARENT, LV_FIT_TIGHT);
-  lv_obj_add_style(iconRow, LV_OBJ_PART_MAIN, &noBorderStyle);
-  lv_obj_set_style_local_pad_inner(iconRow, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, 2);
-  lv_obj_set_style_local_border_color(iconRow, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, LV_COLOR_MAKE(0x3d, 0x6b, 0xdc));
-  lv_obj_set_style_local_border_width(iconRow, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, 1);
-  lv_obj_set_style_local_border_side(iconRow, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, LV_BORDER_SIDE_TOP);
-
-  lv_obj_t *icon = lv_label_create(iconRow, NULL);
-  lv_label_set_text_static(icon, "A");
-  lv_obj_add_style(icon, LV_OBJ_PART_MAIN, &mainIconStyle);
-  lv_obj_add_state(icon, LV_STATE_CHECKED);
-  lv_obj_add_state(icon, LV_STATE_FOCUSED);
-  lv_obj_set_parent(icon, iconRow);
-
-  icon = lv_label_create(iconRow, NULL);
-  lv_label_set_text_static(icon, "B");
-  lv_obj_add_style(icon, LV_OBJ_PART_MAIN, &mainIconStyle);
-  lv_obj_add_state(icon, LV_STATE_CHECKED);
-  lv_obj_set_parent(icon, iconRow);
-
-  icon = lv_label_create(iconRow, NULL);
-  lv_label_set_text_static(icon, "C");
-  lv_obj_add_style(icon, LV_OBJ_PART_MAIN, &mainIconStyle);
-  lv_obj_add_state(icon, LV_STATE_CHECKED);
-  lv_obj_set_parent(icon, iconRow);
-
-  icon = lv_label_create(iconRow, NULL);
-  lv_label_set_text_static(icon, "D");
-  lv_obj_add_style(icon, LV_OBJ_PART_MAIN, &mainIconStyle);
-  lv_obj_add_state(icon, LV_STATE_CHECKED);
-  lv_obj_set_parent(icon, iconRow);
-
-  icon = lv_label_create(iconRow, NULL);
-  lv_label_set_text_static(icon, "E");
-  lv_obj_add_style(icon, LV_OBJ_PART_MAIN, &mainIconStyle);
-  lv_obj_set_parent(icon, iconRow);
-
-  icon = lv_label_create(iconRow, NULL);
-  lv_label_set_text_static(icon, "F");
-  lv_obj_add_style(icon, LV_OBJ_PART_MAIN, &mainIconStyle);
-  lv_obj_set_parent(icon, iconRow);
-
-  icon = lv_label_create(iconRow, NULL);
-  lv_label_set_text_static(icon, "G");
-  lv_obj_add_style(icon, LV_OBJ_PART_MAIN, &mainIconStyle);
-  lv_obj_set_parent(icon, iconRow);
-
-  icon = lv_label_create(iconRow, NULL);
-  lv_label_set_text_static(icon, "K");
-  lv_obj_add_style(icon, LV_OBJ_PART_MAIN, &mainIconStyle);
-  lv_obj_set_parent(icon, iconRow);
-
-  lv_obj_align(iconRow, main, LV_ALIGN_IN_BOTTOM_MID, 0, 0);
-
+void createMainPage(lv_obj_t *page) {
   lv_obj_t *nameLabel;
   lv_obj_t *statusLabel;
   lv_obj_t *amperageLabel;
@@ -156,22 +82,6 @@ void init_main_screen() {
   lv_obj_t *maxPowerLabel;
   lv_obj_t *energyLabel;
   lv_obj_t *durationLabel;
-
-  // the page
-  lv_obj_t *page = lv_cont_create(main, NULL);
-  lv_obj_align(page, statusRow, LV_ALIGN_OUT_BOTTOM_MID, 0, 0);
-  lv_coord_t w = lv_obj_get_width(main);
-  lv_coord_t h = lv_obj_get_height(main) - (lv_obj_get_height(statusRow) + lv_obj_get_height(iconRow));
-  lv_obj_set_size(page, w, h);
-  printf("%d - (%d + %d) = %d", lv_obj_get_height(main), lv_obj_get_height(statusRow), lv_obj_get_height(iconRow), h);
-  printf("page size %d %d", lv_obj_get_width_margin(page), lv_obj_get_height_margin(page));
-
-  lv_obj_set_style_local_pad_top(page, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, 2);
-  lv_cont_set_layout(page, LV_LAYOUT_COLUMN_LEFT);
-  lv_cont_set_fit2(page, LV_FIT_PARENT, LV_FIT_NONE);
-  lv_obj_add_style(page, LV_OBJ_PART_MAIN, &noBorderStyle);
-  lv_obj_set_style_local_bg_color(page, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, LV_COLOR_MAKE(0x03, 0x1d, 0x78));
-  lv_obj_set_style_local_bg_opa(page, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, LV_OPA_COVER);
 
   lv_obj_t *row = lv_cont_create(page, NULL);
   lv_cont_set_layout(row, LV_LAYOUT_OFF);
@@ -249,6 +159,230 @@ void init_main_screen() {
   lv_obj_set_style_local_pad_ver(durationLabel, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, 2);
   lv_obj_set_style_local_text_font(durationLabel, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, &FiraSansMedium10);
   lv_label_set_long_mode(durationLabel, LV_LABEL_LONG_SROLL_CIRC);
+}
+
+#define MAKE_INFO(name, label, defaultText)                              \
+  lv_obj_t *name##Label = lv_label_create(col1, NULL);                   \
+  lv_obj_add_style(name##Label, LV_OBJ_PART_MAIN, &smallInfoLabelStyle); \
+  lv_label_set_text_static(name##Label, label);                          \
+                                                                         \
+  name = lv_label_create(col2, NULL);                                    \
+  lv_label_set_align(name, LV_LABEL_ALIGN_RIGHT);                        \
+  lv_obj_add_style(name, LV_OBJ_PART_MAIN, &smallInfoLabelStyle);        \
+  lv_label_set_text_static(name, defaultText);
+
+void makeLeaderSection(lv_obj_t *page) {
+  lv_obj_t *leaderView = lv_cont_create(page, NULL);
+  lv_obj_add_style(leaderView, LV_CONT_PART_MAIN, &noBorderStyle);
+  lv_obj_set_style_local_border_width(leaderView, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, 1);
+  lv_obj_set_style_local_border_side(leaderView, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, LV_BORDER_SIDE_TOP);
+  lv_obj_set_style_local_border_color(leaderView, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, LV_COLOR_WHITE);
+
+  lv_cont_set_fit2(leaderView, LV_FIT_PARENT, LV_FIT_TIGHT);
+
+  lv_obj_t *col1 = lv_cont_create(leaderView, NULL);
+  lv_cont_set_layout(col1, LV_LAYOUT_COLUMN_LEFT);
+  lv_cont_set_fit(col1, LV_FIT_PARENT);
+  lv_obj_add_style(col1, LV_OBJ_PART_MAIN, &noBorderStyle);
+  lv_obj_set_style_local_pad_ver(col1, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, 4);
+
+  lv_obj_t *col2 = lv_cont_create(leaderView, NULL);
+  lv_cont_set_layout(col2, LV_LAYOUT_COLUMN_RIGHT);
+  lv_cont_set_fit(col2, LV_FIT_PARENT);
+  lv_obj_add_style(col2, LV_OBJ_PART_MAIN, &noBorderStyle);
+  lv_obj_set_style_local_pad_ver(col2, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, 4);
+
+  lv_obj_t *gridLabel;
+  MAKE_INFO(gridLabel, "Grid", "123/212/123 A");
+
+  lv_obj_t *chargingLabel;
+  MAKE_INFO(chargingLabel, "Charging", "999 kW, 123/212/123 A");
+
+  lv_obj_t *budgetLabel;
+  MAKE_INFO(budgetLabel, "Budget", "999 kW, 123/212/123 A");
+
+  lv_cont_set_fit2(leaderView, LV_FIT_PARENT, LV_FIT_TIGHT);
+
+  lv_obj_t *allocFactorsTable = lv_table_create(page, NULL);
+  lv_obj_add_style(allocFactorsTable, LV_OBJ_PART_MAIN, &noBorderStyle);
+  lv_obj_add_style(allocFactorsTable, LV_TABLE_PART_BG, &noBorderStyle);
+  lv_obj_add_style(allocFactorsTable, LV_TABLE_PART_CELL1, &noBorderStyle);
+  lv_obj_set_style_local_text_font(allocFactorsTable, LV_TABLE_PART_CELL1, LV_STATE_DEFAULT, &FiraSansMedium10);
+  lv_obj_set_style_local_text_color(allocFactorsTable, LV_TABLE_PART_CELL1, LV_STATE_DEFAULT, LV_COLOR_WHITE);
+
+  lv_obj_add_style(allocFactorsTable, LV_TABLE_PART_CELL2, &noBorderStyle);
+  lv_obj_set_style_local_text_font(allocFactorsTable, LV_TABLE_PART_CELL2, LV_STATE_DEFAULT, &FiraSansMedium10);
+  lv_obj_set_style_local_text_color(allocFactorsTable, LV_TABLE_PART_CELL2, LV_STATE_DEFAULT, LV_COLOR_BLUE);
+  lv_obj_set_style_local_bg_color(allocFactorsTable, LV_TABLE_PART_CELL2, LV_STATE_DEFAULT, LV_COLOR_WHITE);
+  lv_obj_set_style_local_bg_opa(allocFactorsTable, LV_TABLE_PART_CELL2, LV_STATE_DEFAULT, LV_OPA_COVER);
+
+  lv_table_set_row_cnt(allocFactorsTable, 3);
+  lv_table_set_col_cnt(allocFactorsTable, 3);
+
+  lv_table_set_col_width(allocFactorsTable, 0, 40);
+  lv_table_set_col_width(allocFactorsTable, 1, 80);
+  lv_table_set_col_width(allocFactorsTable, 2, 40);
+
+  lv_table_set_cell_type(allocFactorsTable, 0, 0, 2);
+  lv_table_set_cell_type(allocFactorsTable, 0, 1, 2);
+  lv_table_set_cell_type(allocFactorsTable, 0, 2, 2);
+
+  for (int r = 0; r < 3; r++)
+    for (int c = 0; c < 3; c++)
+      lv_table_set_cell_align(allocFactorsTable, r, c, LV_LABEL_ALIGN_RIGHT);
+
+  lv_table_set_cell_value(allocFactorsTable, 0, 0, "Priority");
+  lv_table_set_cell_value(allocFactorsTable, 0, 1, "Request (A)");
+  lv_table_set_cell_value(allocFactorsTable, 0, 2, "Factor");
+  lv_table_set_cell_value(allocFactorsTable, 1, 0, "5");
+  lv_table_set_cell_value(allocFactorsTable, 1, 1, "123/212/123");
+  lv_table_set_cell_value(allocFactorsTable, 1, 2, "1.0");
+  lv_table_set_cell_value(allocFactorsTable, 2, 0, "5");
+  lv_table_set_cell_value(allocFactorsTable, 2, 1, "123/212/123");
+  lv_table_set_cell_value(allocFactorsTable, 2, 2, "1.0");
+}
+
+void makeFollowerSection(lv_obj_t *page) {
+  lv_obj_t *followerView = lv_cont_create(page, NULL);
+  lv_obj_add_style(followerView, LV_CONT_PART_MAIN, &noBorderStyle);
+  lv_obj_set_style_local_border_width(followerView, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, 1);
+  lv_obj_set_style_local_border_side(followerView, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, LV_BORDER_SIDE_TOP);
+  lv_obj_set_style_local_border_color(followerView, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, LV_COLOR_WHITE);
+
+  lv_cont_set_layout(followerView, LV_LAYOUT_OFF);
+  lv_cont_set_fit(followerView, LV_FIT_NONE);
+  lv_obj_set_width(followerView, lv_obj_get_width(page));
+  lv_obj_set_height(followerView, lv_obj_get_height(page));
+
+  lv_obj_t *col1 = lv_cont_create(followerView, NULL);
+  lv_cont_set_layout(col1, LV_LAYOUT_COLUMN_LEFT);
+  lv_cont_set_fit(col1, LV_FIT_PARENT);
+  lv_obj_add_style(col1, LV_OBJ_PART_MAIN, &noBorderStyle);
+  lv_obj_set_style_local_pad_ver(col1, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, 4);
+
+  lv_obj_t *col2 = lv_cont_create(followerView, NULL);
+  lv_cont_set_layout(col2, LV_LAYOUT_COLUMN_RIGHT);
+  lv_cont_set_fit(col2, LV_FIT_PARENT);
+  lv_obj_add_style(col2, LV_OBJ_PART_MAIN, &noBorderStyle);
+  lv_obj_set_style_local_pad_ver(col2, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, 4);
+
+  lv_obj_t *phaseLabel;
+  MAKE_INFO(phaseLabel, "Phase", "INACTIVE");
+
+  lv_obj_t *ampHistoryLabel;
+  MAKE_INFO(ampHistoryLabel, "Amperge max, avg", "11.1, 14.2 A");
+
+  lv_obj_t *estimatedMaxLabel;
+  MAKE_INFO(estimatedMaxLabel, "Estimated charger max.", "123 A");
+
+  lv_obj_t *requestLabel;
+  MAKE_INFO(requestLabel, "Request", "123 A on L1 L2 L3");
+
+  lv_obj_t *allocationLabel;
+  MAKE_INFO(allocationLabel, "Allocation", "123 A");
+}
+
+void createTeamPage(lv_obj_t *page) {
+  lv_obj_t *teamStateLabel = lv_label_create(page, NULL);
+  lv_label_set_align(teamStateLabel, LV_LABEL_ALIGN_LEFT);
+  lv_obj_add_style(teamStateLabel, LV_OBJ_PART_MAIN, &smallInfoLabelStyle);
+  lv_label_set_text_static(teamStateLabel, "Leader (group size 999 of 999)");
+
+  // makeLeaderSection(page);
+  makeFollowerSection(page);
+}
+
+void init_main_screen() {
+  lv_obj_t *screen = lv_obj_create(NULL, NULL);
+  lv_obj_reset_style_list(screen, LV_OBJ_PART_MAIN);
+  lv_obj_set_pos(screen, 0, 0);
+  lv_obj_set_size(screen, LV_HOR_RES, LV_VER_RES);
+
+  lv_obj_t *main = lv_cont_create(screen, NULL);
+  lv_obj_set_pos(main, 0, 0);
+  lv_obj_set_size(main, LV_HOR_RES, LV_VER_RES);
+  lv_obj_set_style_local_pad_inner(main, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, 0);
+  lv_obj_add_style(main, LV_OBJ_PART_MAIN, &noBorderStyle);
+  lv_obj_set_style_local_bg_opa(main, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, LV_OPA_COVER);
+  lv_obj_set_style_local_bg_color(main, LV_CONT_PART_MAIN, LV_STATE_DEFAULT, LV_COLOR_BLACK);
+
+  lv_obj_t *statusRow = makeStatusRow(main);
+
+  // icon row
+  lv_obj_t *iconRow = lv_cont_create(main, NULL);
+  lv_cont_set_layout(iconRow, LV_LAYOUT_ROW_MID);
+  lv_cont_set_fit2(iconRow, LV_FIT_PARENT, LV_FIT_TIGHT);
+  lv_obj_add_style(iconRow, LV_OBJ_PART_MAIN, &noBorderStyle);
+  lv_obj_set_style_local_pad_inner(iconRow, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, 2);
+  lv_obj_set_style_local_border_color(iconRow, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, LV_COLOR_MAKE(0x3d, 0x6b, 0xdc));
+  lv_obj_set_style_local_border_width(iconRow, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, 1);
+  lv_obj_set_style_local_border_side(iconRow, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, LV_BORDER_SIDE_TOP);
+
+  lv_obj_t *icon = lv_label_create(iconRow, NULL);
+  lv_label_set_text_static(icon, "A");
+  lv_obj_add_style(icon, LV_OBJ_PART_MAIN, &mainIconStyle);
+  lv_obj_add_state(icon, LV_STATE_CHECKED);
+  lv_obj_add_state(icon, LV_STATE_FOCUSED);
+  lv_obj_set_parent(icon, iconRow);
+
+  icon = lv_label_create(iconRow, NULL);
+  lv_label_set_text_static(icon, "B");
+  lv_obj_add_style(icon, LV_OBJ_PART_MAIN, &mainIconStyle);
+  lv_obj_add_state(icon, LV_STATE_CHECKED);
+  lv_obj_set_parent(icon, iconRow);
+
+  icon = lv_label_create(iconRow, NULL);
+  lv_label_set_text_static(icon, "C");
+  lv_obj_add_style(icon, LV_OBJ_PART_MAIN, &mainIconStyle);
+  lv_obj_add_state(icon, LV_STATE_CHECKED);
+  lv_obj_set_parent(icon, iconRow);
+
+  icon = lv_label_create(iconRow, NULL);
+  lv_label_set_text_static(icon, "D");
+  lv_obj_add_style(icon, LV_OBJ_PART_MAIN, &mainIconStyle);
+  lv_obj_add_state(icon, LV_STATE_CHECKED);
+  lv_obj_set_parent(icon, iconRow);
+
+  icon = lv_label_create(iconRow, NULL);
+  lv_label_set_text_static(icon, "E");
+  lv_obj_add_style(icon, LV_OBJ_PART_MAIN, &mainIconStyle);
+  lv_obj_set_parent(icon, iconRow);
+
+  icon = lv_label_create(iconRow, NULL);
+  lv_label_set_text_static(icon, "F");
+  lv_obj_add_style(icon, LV_OBJ_PART_MAIN, &mainIconStyle);
+  lv_obj_set_parent(icon, iconRow);
+
+  icon = lv_label_create(iconRow, NULL);
+  lv_label_set_text_static(icon, "G");
+  lv_obj_add_style(icon, LV_OBJ_PART_MAIN, &mainIconStyle);
+  lv_obj_set_parent(icon, iconRow);
+
+  icon = lv_label_create(iconRow, NULL);
+  lv_label_set_text_static(icon, "K");
+  lv_obj_add_style(icon, LV_OBJ_PART_MAIN, &mainIconStyle);
+  lv_obj_set_parent(icon, iconRow);
+
+  lv_obj_align(iconRow, main, LV_ALIGN_IN_BOTTOM_MID, 0, 0);
+
+  // the page
+  lv_obj_t *page = lv_cont_create(main, NULL);
+  lv_obj_align(page, statusRow, LV_ALIGN_OUT_BOTTOM_MID, 0, 0);
+  lv_coord_t w = lv_obj_get_width(main);
+  lv_coord_t h = lv_obj_get_height(main) - (lv_obj_get_height(statusRow) + lv_obj_get_height(iconRow));
+  lv_obj_set_size(page, w, h);
+  printf("%d - (%d + %d) = %d", lv_obj_get_height(main), lv_obj_get_height(statusRow), lv_obj_get_height(iconRow), h);
+  printf("page size %d %d", lv_obj_get_width_margin(page), lv_obj_get_height_margin(page));
+
+  lv_obj_set_style_local_pad_top(page, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, 2);
+  lv_cont_set_layout(page, LV_LAYOUT_COLUMN_LEFT);
+  lv_cont_set_fit2(page, LV_FIT_PARENT, LV_FIT_NONE);
+  lv_obj_add_style(page, LV_OBJ_PART_MAIN, &noBorderStyle);
+  lv_obj_set_style_local_bg_color(page, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, LV_COLOR_MAKE(0x03, 0x1d, 0x78));
+  lv_obj_set_style_local_bg_opa(page, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, LV_OPA_COVER);
+
+  // createMainPage(page);
+  createTeamPage(page);
 
   lv_scr_load(screen);
 
@@ -257,7 +391,7 @@ void init_main_screen() {
   lv_obj_reset_style_list(background, LV_OBJ_PART_MAIN);
   lv_obj_set_pos(background, 0, 0);
   lv_obj_set_style_local_bg_color(background, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, LV_COLOR_BLACK);
-  lv_obj_set_style_local_bg_opa(background, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, LV_OPA_TRANSP);
+  lv_obj_set_style_local_bg_opa(background, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, LV_OPA_50);
   lv_obj_set_size(background, LV_HOR_RES, LV_VER_RES);
 
   lv_obj_t *mbox = lv_label_create(background, NULL);
@@ -267,7 +401,7 @@ void init_main_screen() {
   lv_obj_set_style_local_pad_hor(mbox, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, 20);
   lv_obj_set_style_local_pad_ver(mbox, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, 10);
   lv_obj_set_style_local_radius(mbox, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, 10);
-  lv_label_set_text(mbox, "Main main");
+  lv_label_set_text(mbox, "Home");
   lv_obj_align(mbox, NULL, LV_ALIGN_CENTER, 0, 0);
 
   /* Fade the message box in with an animation */
@@ -279,12 +413,33 @@ void init_main_screen() {
   lv_anim_set_values(&a, LV_OPA_60, LV_OPA_0);
   lv_anim_set_exec_cb(&a, (lv_anim_exec_xcb_t) opa_anim);
   lv_anim_start(&a);
+
+  lv_obj_t *errorModal = lv_cont_create(background, NULL);
+  lv_cont_set_layout(errorModal, LV_LAYOUT_CENTER);
+  lv_obj_set_style_local_bg_color(errorModal, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, LV_COLOR_RED);
+  lv_obj_set_style_local_pad_hor(errorModal, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, 10);
+  lv_obj_set_style_local_pad_ver(errorModal, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, 10);
+  lv_obj_set_size(errorModal, lv_obj_get_width(background) - 20, lv_obj_get_height(background) - 20);
+  lv_obj_align(errorModal, NULL, LV_ALIGN_CENTER, 0, 0);
+
+  lv_obj_t *title = lv_label_create(errorModal, NULL);
+  lv_obj_set_style_local_text_color(title, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, LV_COLOR_WHITE);
+  lv_label_set_text_static(title, "Oooopsie!");
+  lv_obj_set_style_local_text_font(title, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, &FiraSansMedium13);
+
+  lv_obj_t *body = lv_label_create(errorModal, NULL);
+  // lv_obj_set_style_local_margin_hor(body, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, 20);
+  lv_obj_set_style_local_text_color(body, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, LV_COLOR_WHITE);
+  lv_label_set_long_mode(body, LV_LABEL_LONG_BREAK);
+  lv_label_set_text_static(body, "Some really bad shit happened. You will certainly not like this!");
+  lv_obj_set_style_local_text_font(body, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, &FiraSansMedium10);
+  lv_obj_set_width(body, lv_obj_get_width(errorModal)-40);
 }
 
 void init_root() {
   // Theme
-  lv_theme_t *th = lv_theme_template_init(LV_THEME_DEFAULT_COLOR_PRIMARY, LV_THEME_DEFAULT_COLOR_SECONDARY, LV_THEME_DEFAULT_FLAG, &FiraSansMedium13,
-                                          &FiraSansMedium13, &FiraSansMedium13, &FiraSansMedium13);
+  lv_theme_t *th = lv_theme_template_init(LV_THEME_DEFAULT_COLOR_PRIMARY, LV_THEME_DEFAULT_COLOR_SECONDARY, LV_THEME_DEFAULT_FLAG,
+                                          &FiraSansMedium13, &FiraSansMedium13, &FiraSansMedium13, &FiraSansMedium13);
   lv_theme_set_act(th);
 
   initStyles();

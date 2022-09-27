@@ -7,6 +7,7 @@ lv_style_t mainIconStyle;
 lv_style_t noBorderStyle;
 lv_style_t smallInfoLabelStyle;
 lv_style_t largeInfoLabelStyle;
+lv_style_t pageStyle;
 
 lv_style_t statusChipStyle;
 
@@ -20,6 +21,12 @@ void initStyles() {
     lv_style_set_pad_inner(&noBorderStyle, LV_STATE_DEFAULT, 2);
     lv_style_set_border_width(&noBorderStyle, LV_STATE_DEFAULT, 0);
     lv_style_set_bg_opa(&noBorderStyle, LV_STATE_DEFAULT, 0);
+
+    // Page background
+    lv_style_init(&pageStyle);
+    lv_style_copy(&pageStyle, &noBorderStyle);
+    lv_style_set_bg_color(&pageStyle, LV_STATE_DEFAULT, LV_COLOR_MAKE(0x03, 0x1d, 0x78));
+    lv_style_set_bg_opa(&pageStyle, LV_STATE_DEFAULT, LV_OPA_COVER);
 
     // Icons
     lv_style_init(&mainIconStyle);

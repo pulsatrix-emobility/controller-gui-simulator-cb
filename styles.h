@@ -23,6 +23,7 @@ extern lv_style_t noBorderStyle;
 extern lv_style_t smallInfoLabelStyle;
 extern lv_style_t largeInfoLabelStyle;
 extern lv_style_t statusChipStyle;
+extern lv_style_t pageStyle;
 
 extern void initStyles();
 
